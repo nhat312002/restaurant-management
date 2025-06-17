@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý bàn ăn</title>
+  <link rel="stylesheet" href="banan.css">
+  <button class="back-button" onclick="window.location.href='../../nhanvien/homepage.html'"
+    style="margin-bottom: 20px;">
+    <i class="fas fa-arrow-left"></i> ← Quay lại trang chủ
+  </button>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>Danh sách bàn ăn</h1>
+
+      <div class="status">
+        <div class="status-item">
+          <div class="ban sample trong"></div>
+          <span>Trống</span>
+        </div>
+        <div class="status-item">
+          <div class="ban sample dat-truoc"></div>
+          <span>Đặt trước</span>
+        </div>
+        <div class="status-item">
+          <div class="ban sample co-khach"></div>
+          <span>Đã có khách</span>
+        </div>
+      </div>
+      <div class="grid-ban-an" id="banGrid"></div>
+    </div>
+
+    <div class="right-panel" id="banDetails">
+      <h2>Chi tiết bàn ăn</h2>
+      <p id="banInfo">Chọn một bàn để xem chi tiết.</p>
+    </div>
+  </div>
+
+  <!-- Pop-up lựa chọn -->
+  <div class="popup" id="popup">
+    <div class="popup-content" id="popupContent">
+      <h3 id="popupTitle"></h3>
+      <div class="popup-buttons" id="popupButtons"></div>
+      <button onclick="closePopup()">Đóng</button>
+    </div>
+  </div>
+
+  <!-- Pop-up menu -->
+
+  <div class="popup" id="menuPopup">
+    <div class="popup-content">
+      <h3 id="menuTitle">Gọi món - Bàn X</h3>
+      <div class="menu-items" id="menuItems">
+        <div class="menu-item" data-name="LƯỠI HEO PHỦ TRỨNG KIẾN" data-price="120000">
+          <img src="../../img/bs1.png" alt="LƯỠI HEO PHỦ TRỨNG KIẾN">
+          <div class="menu-item-name">LƯỠI HEO PHỦ TRỨNG KIẾN</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="BẠCH TUỘC SỐT THÁI" data-price="120000">
+          <img src="../../img/bs2.png" alt="BẠCH TUỘC SỐT THÁI">
+          <div class="menu-item-name">BẠCH TUỘC SỐT THÁI</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="LẨU TÔM BẦU" data-price="120000">
+          <img src="../../img/bs3.png" alt="LẨU TÔM BẦU">
+          <div class="menu-item-name">LẨU TÔM BẦU</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="SƯỜN TẢNG" data-price="120000">
+          <img src="../../img/bs4.png" alt="SƯỜN TẢNG">
+          <div class="menu-item-name">SƯỜN TẢNG</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="TÔM CHIÊN TỔ YẾN" data-price="120000">
+          <img src="../../img/bs5.png" alt="TÔM CHIÊN TỔ YẾN">
+          <div class="menu-item-name">TÔM CHIÊN TỔ YẾN</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="BẠCH TUỘC SỐT THÁI" data-price="120000">
+          <img src="../../img/bs2.png" alt="BẠCH TUỘC SỐT THÁI">
+          <div class="menu-item-name">BẠCH TUỘC SỐT THÁI</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="CHÂN GIÒ CHIÊN GIÒN" data-price="120000">
+          <img src="./img/changiochiengion.jpg" alt="CHÂN GIÒ CHIÊN GIÒN" >
+          <div class="menu-item-name">CHÂN GIÒ CHIÊN GIÒN</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="DẠ DÀY CHÁY TỎI" data-price="120000">
+          <img src="./img/dadaychaytoi.jpg" alt="DẠ DÀY CHÁY TỎI">
+          <div class="menu-item-name">DẠ DÀY CHÁY TỎI</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="TÓP MỠ XÀO DƯA" data-price="120000">
+          <img src="./img/topmoxaodua.jpg" alt="TÓP MỠ XÀO DƯA">
+          <div class="menu-item-name">TÓP MỠ XÀO DƯA</div>
+          <div class="menu-item-price">Giá: 120.000₫</div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="BIA HEINEKEN" data-price="20000">
+          <img src="./img/biaken.png" alt="BIA HEINEKEN">
+          <div class="menu-item-name">BIA HEINEKEN</div>
+          <div class="menu-item-price">Giá: 20.000₫/lon </div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+        <div class="menu-item" data-name="BIA BUDWEISER" data-price="19000">
+          <img src="./img/biabudweiser.jpg" alt="BIA BUDWEISER">
+          <div class="menu-item-name">BIA BUDWEISER</div>
+          <div class="menu-item-price">Giá: 19.000₫/lon </div>
+          <div class="quantity-controls">
+            <button type="button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" min="0" value="0">
+            <button type="button" onclick="changeQuantity(this, 1)">+</button>
+          </div>
+        </div>
+
+      </div>
+      <button onclick="saveMenu()">Lưu</button>
+      <button onclick="closeMenu()">Đóng</button>
+    </div>
+  </div>
+
+  <script src="banan.js"></script>
+
+</body>
+
+</html>

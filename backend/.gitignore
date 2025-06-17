@@ -1,0 +1,8 @@
+# Bỏ qua file môi trường
+.env
+
+# Bỏ qua thư mục chứa các thư viện đã cài
+node_modules/
+
+# Các file log
+*.log
